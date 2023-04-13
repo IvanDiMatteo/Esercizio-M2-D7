@@ -5,16 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <script src="https://kit.fontawesome.com/599f069921.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <title>JobSearcher</title>
 </head>
 <body>
-    <label for="searcher1">Title:</label>
-    <input type="search" id="searcher1"><br>
-    <label for="searcher2">Location:</label>
-    <input type="search" id="searcher2"><br>
-    <input type="button" value="Search" id="btn"><br>
-    <div id="output"></div>
-
+    <main>
+        <div id="logo"><h2 id="J">J</h2><i class="fa fa-magnifying-glass"></i><h2 id="S">S</h2></div>
+        <h1><span>J</span>ob <span>S</span>earcher</h1>
+        <div id="stringhe">
+            <label for="searcher1"><span>T</span>itle:</label>
+            <input type="search" placeholder="Title" id="searcher1">
+            <label for="searcher2"><span>L</span>ocation:</label>
+            <input type="search" placeholder="Location" id="searcher2">
+            <button id="btn"><i class="fa fa-magnifying-glass"></i> Search</button>
+            <ul id="output"></ul>
+        </div>
+    </main>
     <script src="scaricabile.js"></script>
 </body>
 </html>
