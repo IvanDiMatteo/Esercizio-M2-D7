@@ -94,9 +94,9 @@ span {
 verrà visualizzato questo h3 con una breve animazione */
 
 h3 {
+    padding: 0 2vh 1vh 2vh;
     text-align: center;
     color: red;
-    padding-bottom: 1vh;
     animation: horizontal-shaking .35s .1s;
 }
 
@@ -120,7 +120,6 @@ p, li {
 }
 
 li {
-    width: 100%;
     border-top: solid 1px rgb(28, 252, 218);
 }
 
