@@ -203,7 +203,8 @@ function output() {
     per determinare la lunghezza dell'array "result", ma anche per lo svolgimento di questo "for" */
     for (let i = 0; i < search.count; i++) {
       let p = document.createElement("li");
-      p.innerText = "-" + search.result[i].title + "\n" + "-" + search.result[i].location;
+      p.innerText = "Title:\n" + "-" + search.result[i].title + "\n\n" + 
+      "Location:\n" + "-" + search.result[i].location;
       out.appendChild(p);
     }
     
