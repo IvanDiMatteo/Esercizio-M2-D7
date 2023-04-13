@@ -150,28 +150,41 @@ function jobSearcher(location, position) {
   return {result, count};
 }
 
-function output() {
+let title = document.getElementById("searcher1");
+let locations = document.getElementById("searcher2");
+let out = document.getElementById("output");
 
-  let title = document.getElementById("searcher1");
-  let locations = document.getElementById("searcher2");
-  let out = document.getElementById("output");
+function clean() {
+  out.innerHTML = "";
+}
+
+function output() {
   
   let search = jobSearcher(locations.value, title.value);
 
-  for (let i = 0; i < search.count; i++) {
-    let p = document.createElement("p");
-    p.innerText = search.result[i].title + "\n" + search.result[i].location;
-    out.appendChild(p);
+  if (locations.value == "" && title.value == "") {
+    console.log("undefined");
+  } else {
+    for (let i = 0; i < search.count; i++) {
+      let p = document.createElement("li");
+      p.innerText = "-" + search.result[i].title + "\n" + "-" + search.result[i].location;
+      out.appendChild(p);
+    }
+    
+    let contatore = document.createElement("p");
+    contatore.innerText = "Found " + search.count + " elements";
+    out.appendChild(contatore);
   }
-  
-  let contatore = document.createElement("span");
-  contatore.innerText = "Found " + search.count + " elements";
-  out.appendChild(contatore);
+}
+
+function final() {
+  clean();
+  output();
 }
 
 function mainFunction() {
   let button = document.getElementById("btn");
-  button.addEventListener('click', output);
+  button.addEventListener('click', final);
 }
 
 window.onload = mainFunction();
