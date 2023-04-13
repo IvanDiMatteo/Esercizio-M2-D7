@@ -125,7 +125,7 @@ const jobs = [
   },
 ]
 
-/* Funzione per la ricerca dei vari elementi dall'array fornito, filtrando i risultati
+/* Funzione per la ricerca dei vari oggetti dall'array fornito, filtrando i risultati
 tramite i parametri che verranno inseriti dall'utente ("Location" e "Position") */
 function jobSearcher(location, position) {
 

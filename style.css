@@ -127,7 +127,7 @@ li {
 p {
     text-align: center;
     min-width: 200px;
-    color: rgb(255, 255, 255);
+    color: white;
     border-top: solid 3px rgb(28, 252, 218);
     font-weight: bold;
     text-decoration: underline;
