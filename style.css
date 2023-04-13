@@ -19,17 +19,7 @@ main {
     align-items: center;
 }
 
-h1 {
-    margin-bottom: 1vh;
-}
-
-span {
-    color: rgb(28, 252, 218);
-}
-
-h2 {
-    padding: 0 0.7vw;
-}
+/* logo area */
 
 #logo {
     border-bottom: solid 3px white;
@@ -38,13 +28,22 @@ h2 {
     justify-content: center;
     align-items: baseline;
     color: rgb(28, 252, 218);
-
 }
 
 #logo .fa {
     color: white;
     font-size: 60pt;
 }
+
+h2 {
+    padding: 0 0.7vw;
+}
+
+h1 {
+    margin-bottom: 1vh;
+}
+
+/* <div> contenente i campi di ricerca ed i suoi risultati */
 
 #stringhe {
     position: relative;
@@ -63,8 +62,12 @@ h2 {
     border-radius: 20px;
 }
 
-.fa {
-    padding: 0;
+label {
+    margin-top: 1%;
+}
+
+span {
+    color: rgb(28, 252, 218);
 }
 
 #btn {
@@ -75,28 +78,45 @@ h2 {
     border-radius: 20px;
 }
 
+.fa {
+    padding: 0;
+}
+
 #btn:hover {
     background-color: rgb(28, 252, 218);
     color: black;
 }
 
-li {
-    width: 100%;
+/* Se alla pressione del bottone i campi di ricerca sono vuoti,
+verrà visualizzato questo h3 con una breve animazione */
+
+h3 {
+    color: red;
+    padding-bottom: 1vh;
+    animation: horizontal-shaking .35s .1s;
 }
 
-label {
-    margin-top: 1%;
+@keyframes horizontal-shaking {
+    0% { transform: translateX(0) }
+    25% { transform: translateX(5px) }
+    50% { transform: translateX(-5px) }
+    75% { transform: translateX(5px) }
+    100% { transform: translateX(0) }
+}
+
+/* <ul> in cui verranno aggiunti i risultati della ricarca (<li>)
+e il contatore con il numero di risultati trovati (<p>) */
+
+ul {
+    list-style-type: none;
 }
 
 p, li {
     padding: 3%;
 }
 
-ul {
-    list-style-type: none;
-}
-
 li {
+    width: 100%;
     border-top: solid 1px rgb(28, 252, 218);
 }
 
