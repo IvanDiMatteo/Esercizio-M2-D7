@@ -125,6 +125,8 @@ const jobs = [
   },
 ]
 
+/* PARTE 1 */
+
 /* Funzione per la ricerca dei vari oggetti dall'array fornito, filtrando i risultati
 tramite i parametri che verranno inseriti dall'utente ("Location" e "Position") */
 function jobSearcher(location, position) {
@@ -165,14 +167,19 @@ function jobSearcher(location, position) {
   return {result, count};
 }
 
+/* PARTE 2 */
+
 /* Le seguenti funzioni interagiscono col DOM,
 prendendo come input i parametri ("title" e "location") forniti dall'utente
 e restituendo come output una lista formata dai risultati filtrati */
 
-/* Queste variabili 'catturano' gli elementi HTML presenti nel DOM */
+/* Queste variabili 'catturano' gli elementi HTML presenti nel DOM
+e verranno utilizzate nelle prossime funzioni */
 let title = document.getElementById("searcher1");
 let locations = document.getElementById("searcher2");
 let out = document.getElementById("output");
+let button = document.getElementById("btn");
+let input = document.getElementsByClassName("myInput");
 
 /* Questa funzione fa in modo che alla pressione del pulsante 'search'
 la lista venga innanzitutto pulita da tutti i suoi contenuti,
@@ -181,12 +188,12 @@ function clean() {
   out.innerHTML = "";
 }
 
-/* Questa funzione prende i risultati filtrati dalla prima funzione
+/* Questa funzione prende i risultati filtrati dalla funzione nella 'PARTE 1'
 e li restituisce come output all'interno di una lista */
 function output() {
   
   /* Questa variabile serve a prendere come input i valori "title" e "location" forniti dall'utente,
-  per poi darli come parametri alla prima funzione, così da essere filtrati */
+  per poi darli come parametri alla funzione nella 'PARTE 1', così da essere filtrati */
   let search = jobSearcher(locations.value, title.value);
 
   /* Questo "if" fa in modo che se i campi "title" e "location" sono vuoti,
@@ -216,20 +223,33 @@ function output() {
   }
 }
 
-function final() {
-  clean();
-  output();
-}
-
-/* Questa funzione da il via a tutto:
-alla pressione del "button" viene eseguita la funzione "final",
-che fa a sua volta eseguire prima la funzione "clean"
-(che pulisce la lista dai vari contenuti precedentemente cercati),
-poi la funzione "output"
-(che restituisce i risultati della ricerca e il numero di essi trovato) */
+/* Questa funzione da il via a tutto */
 function mainFunction() {
-  let button = document.getElementById("btn");
-  button.addEventListener('click', final);
+
+  /* Alla pressione del "button" vengono eseguite le funzioni "clean"
+  (che pulisce la lista dai vari contenuti precedentemente cercati)
+  e di seguito la funzione "output"
+  (che restituisce i risultati della ricerca e il numero di essi trovato)
+  NOTA: La variabile "button" viene dichiarata a riga 177 */
+  button.addEventListener('click', ()=> {
+    clean();
+    output();
+  });
+
+  /* Questa parte della funzione fa in modo di poter eseguire la ricerca
+  premendo il tasto 'enter' sulla tastiera.
+  Il ciclo di "for" serve a selezionare entrambi gli input field
+  che sono stati 'catturati' a riga 178 */
+  for (let i = 0; i < input.length; i++) {
+    input[i].addEventListener("keypress", function(event) {
+      /* Questo "if" fa in modo che alla pressione di enter
+      il "button" venga cliccato in automatico, senza il bisogno di cliccarlo manualmente */
+      if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("btn").click();
+      }
+    });
+  }
 }
 
 window.onload = mainFunction();
