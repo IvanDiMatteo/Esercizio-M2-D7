@@ -116,6 +116,7 @@ h3 {
 e il contatore con il numero di risultati trovati (<p>) */
 
 ul {
+    width: 100%;
     list-style-type: none;
     overflow: hidden;
 }
