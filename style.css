@@ -126,7 +126,10 @@ ul p, li {
 }
 
 li {
-    border-top: solid 1px rgb(28, 252, 218);
+    background: linear-gradient(45deg, rgb(0, 15, 4) 0%, rgb(1, 49, 0) 100%) padding-box,
+                linear-gradient(90deg, rgb(0, 165, 61) 0%, rgb(28, 252, 218) 100%) border-box;
+    border-top: 1px solid transparent;
+    /* border-top: solid 1px rgb(28, 252, 218); */
     -webkit-animation: fadein 1.3s, slide-right .2s forwards;
     transform:translateX(-100%);
 }
@@ -135,7 +138,9 @@ ul p {
     text-align: center;
     min-width: 200px;
     color: white;
-    border-top: solid 3px rgb(28, 252, 218);
+    background: linear-gradient(45deg, rgb(0, 15, 4) 0%, rgb(1, 49, 0) 100%) padding-box,
+                linear-gradient(90deg, rgb(0, 165, 61) 0%, rgb(28, 252, 218) 100%) border-box;
+    border-top: 3px solid transparent;
     font-weight: bold;
     text-decoration: underline;
     -webkit-animation: fadein 1.3s, slide-right .2s forwards;
