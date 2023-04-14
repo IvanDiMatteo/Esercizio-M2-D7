@@ -243,6 +243,7 @@ function mainFunction() {
   for (let i = 0; i < input.length; i++) {
     input[i].addEventListener("keypress", function(event) {
       
+
       /* Questo "if" fa in modo che alla pressione di enter
       il "button" venga cliccato in automatico, senza il bisogno di cliccarlo manualmente */
       if (event.key === "Enter") {
