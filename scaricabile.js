@@ -242,7 +242,6 @@ function mainFunction() {
   che sono stati 'catturati' a riga 178 */
   for (let i = 0; i < input.length; i++) {
     input[i].addEventListener("keypress", function(event) {
-      
 
       /* Questo "if" fa in modo che alla pressione di enter
       il "button" venga cliccato in automatico, senza il bisogno di cliccarlo manualmente */
