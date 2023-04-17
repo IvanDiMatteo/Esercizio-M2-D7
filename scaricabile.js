@@ -128,29 +128,20 @@ const jobs = [
 /* PARTE 1 */
 
 /* Funzione per la ricerca dei vari oggetti dall'array fornito, filtrando i risultati
-tramite i parametri che verranno inseriti dall'utente ("Location" e "Position") */
+tramite i parametri che verranno inseriti dall'utente ("Location" e "Position").
+La variabile "count" servirà per determinare il numero di risultati della ricerca */
 function jobSearcher(location, position) {
 
-  /* In questo array verranno aggiunti i risultati della ricerca */
   let result = [];
 
-  /* Questo ciclo di for 'scansiona' tutti gli oggetti dell'array fornito
-  e pusha i risultati filtrati all'interno dell'array "result" */
   for (let i = 0; i < jobs.length; i++) {
 
-    /* Queste variabili fanno in modo che sia i parametri inseriti dall'utente, sia quelli presi
-    dall'array fornito vengano trasformati in LowerCase prima di essere 'scansionati',
-    così da rendere la ricerca 'case insensitive' */
-    let loclc = jobs[i].location.toLowerCase();
-    let titlelc = jobs[i].title.toLowerCase();
-    location = location.toLowerCase();
-    position = position.toLowerCase();
-
-    /* Questo "if" funge da filtro:
-    fa in modo che qualsiasi risultato che includa i parametri inseriti dall'utente
-    venga inserito (sotto forma di oggetto contenente solo gli elementi "title" e "location")
-    all'interno dell'array "result" */
-    if (titlelc.includes(position) && loclc.includes(location)) {
+    /* "toLowerCase()" fa in modo che la ricerca sia 'case insensitive',
+    trasformando sia i parametri inseriti dall'utente che quelli ricercati
+    dal ciclo di "for" tutti in minuscolo */
+    if (jobs[i].title.toLowerCase().includes(position.toLowerCase()) && 
+        jobs[i].location.toLowerCase().includes(location.toLowerCase()))
+      {
       result.push({
         title: jobs[i].title,
         location: jobs[i].location,
@@ -158,23 +149,13 @@ function jobSearcher(location, position) {
     }
   }
 
-  /* Questa variabile serve a calcolare il numero di risultati che sono stati filtrati,
-  misurando la lunghezza dell'array "result" */
   let count = result.length;
 
-  /* La funzione ritorna quindi l'array "result" con i vari oggetti filtrati
-  e la variabile "count" che contiene la lunghezza di "result" come numero intero */
   return {result, count};
 }
 
 /* PARTE 2 */
 
-/* Le seguenti funzioni interagiscono col DOM,
-prendendo come input i parametri ("title" e "location") forniti dall'utente
-e restituendo come output una lista formata dai risultati filtrati */
-
-/* Queste variabili 'catturano' gli elementi HTML presenti nel DOM
-e verranno utilizzate nelle prossime funzioni */
 let title = document.getElementById("searcher1");
 let locations = document.getElementById("searcher2");
 let out = document.getElementById("output");
@@ -189,11 +170,9 @@ function clean() {
 }
 
 /* Questa funzione prende i risultati filtrati dalla funzione nella 'PARTE 1'
-e li restituisce come output all'interno di una lista */
+e li restituisce come output all'interno di una lista "ul" */
 function output() {
   
-  /* Questa variabile serve a prendere come input i valori "title" e "location" forniti dall'utente,
-  per poi darli come parametri alla funzione nella 'PARTE 1', così da essere filtrati */
   let search = jobSearcher(locations.value, title.value);
 
   /* Questo "if" fa in modo che se i campi "title" e "location" sono vuoti,
@@ -202,49 +181,34 @@ function output() {
     let nores = document.createElement("h3");
     nores.innerText = "Please specify a 'Title' and/or a 'Location'!";
     out.appendChild(nores);
+
   } else {
 
-    /* Questo "for" prende i risultati della prima funzione e li restituisce
-    come elementi (li) in una lista (ul)
-    NOTA: ritornare la variabile "count" dalla prima funzione si è reso utile non solo
-    per determinare la lunghezza dell'array "result", ma anche per lo svolgimento di questo "for" */
     for (let i = 0; i < search.count; i++) {
-      let p = document.createElement("li");
-      p.innerText = "Title:\n" + "-" + search.result[i].title + "\n\n" + 
+      let li = document.createElement("li");
+      li.innerText = "Title:\n" + "-" + search.result[i].title + "\n\n" + 
       "Location:\n" + "-" + search.result[i].location;
-      out.appendChild(p);
+      out.appendChild(li);
     }
-    
-    /* Questa variabile aggiunge infine un tag "p"
-    che ci dice quanti risultati sono stati trovati */
+  
     let contatore = document.createElement("p");
     contatore.innerText = "Found " + search.count + " elements";
     out.appendChild(contatore);
   }
 }
 
-/* Questa funzione da il via a tutto */
+/* Questa funzione fa partire prima la funzione clean,
+poi la funzione output al click del "button" */
 function mainFunction() {
-
-  /* Alla pressione del "button" vengono eseguite le funzioni "clean"
-  (che pulisce la lista dai vari contenuti precedentemente cercati)
-  e di seguito la funzione "output"
-  (che restituisce i risultati della ricerca e il numero di essi trovato)
-  NOTA: La variabile "button" viene dichiarata a riga 177 */
   button.addEventListener('click', ()=> {
     clean();
     output();
   });
 
   /* Questa parte della funzione fa in modo di poter eseguire la ricerca
-  premendo il tasto 'enter' sulla tastiera.
-  Il ciclo di "for" serve a selezionare entrambi gli input field
-  che sono stati 'catturati' a riga 178 */
+  premendo il tasto 'enter' sulla tastiera. */
   for (let i = 0; i < input.length; i++) {
     input[i].addEventListener("keypress", function(event) {
-
-      /* Questo "if" fa in modo che alla pressione di enter
-      il "button" venga cliccato in automatico, senza il bisogno di cliccarlo manualmente */
       if (event.key === "Enter") {
         event.preventDefault();
         document.getElementById("btn").click();
